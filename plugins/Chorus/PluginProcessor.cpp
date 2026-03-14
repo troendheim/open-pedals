@@ -21,6 +21,18 @@ ChorusProcessor::ChorusProcessor()
     rateParam  = apvts.getRawParameterValue ("rate");
     depthParam = apvts.getRawParameterValue ("depth");
     mixParam   = apvts.getRawParameterValue ("mix");
+
+    setCurrentProgram (0);
+}
+
+void ChorusProcessor::setCurrentProgram (int index)
+{
+    if (index < 0 || index >= numPresets) return;
+    currentPreset = index;
+    const auto& p = presets[index];
+    apvts.getParameter ("rate")->setValueNotifyingHost (apvts.getParameter ("rate")->convertTo0to1 (p.rate));
+    apvts.getParameter ("depth")->setValueNotifyingHost (apvts.getParameter ("depth")->convertTo0to1 (p.depth));
+    apvts.getParameter ("mix")->setValueNotifyingHost (apvts.getParameter ("mix")->convertTo0to1 (p.mix));
 }
 
 juce::AudioProcessorValueTreeState::ParameterLayout ChorusProcessor::createParameterLayout()

@@ -22,6 +22,19 @@ ReverbProcessor::ReverbProcessor()
     dampingParam  = apvts.getRawParameterValue ("damping");
     mixParam      = apvts.getRawParameterValue ("mix");
     preDelayParam = apvts.getRawParameterValue ("predelay");
+
+    setCurrentProgram (0);
+}
+
+void ReverbProcessor::setCurrentProgram (int index)
+{
+    if (index < 0 || index >= numPresets) return;
+    currentPreset = index;
+    const auto& p = presets[index];
+    apvts.getParameter ("decay")->setValueNotifyingHost (apvts.getParameter ("decay")->convertTo0to1 (p.decay));
+    apvts.getParameter ("damping")->setValueNotifyingHost (apvts.getParameter ("damping")->convertTo0to1 (p.damping));
+    apvts.getParameter ("mix")->setValueNotifyingHost (apvts.getParameter ("mix")->convertTo0to1 (p.mix));
+    apvts.getParameter ("predelay")->setValueNotifyingHost (apvts.getParameter ("predelay")->convertTo0to1 (p.predelay));
 }
 
 juce::AudioProcessorValueTreeState::ParameterLayout ReverbProcessor::createParameterLayout()

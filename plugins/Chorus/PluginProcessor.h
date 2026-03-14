@@ -37,10 +37,33 @@ public:
     bool acceptsMidi() const override { return false; }
     bool producesMidi() const override { return false; }
     double getTailLengthSeconds() const override { return 0.0; }
-    int getNumPrograms() override { return 1; }
-    int getCurrentProgram() override { return 0; }
-    void setCurrentProgram (int) override {}
-    const juce::String getProgramName (int) override { return {}; }
+
+    //==============================================================================
+    // Factory presets
+    struct Preset { const char* name; float rate, depth, mix; };
+
+    static constexpr Preset presets[] = {
+        // Subtle Shimmer: barely-there movement, adds life without obvious modulation
+        { "Subtle Shimmer",  0.40f, 0.20f, 0.25f },
+        // Classic: the Roland JC-120 sound. Smooth, musical, the gold standard
+        { "Classic",         0.80f, 0.40f, 0.50f },
+        // 80s Clean: faster, deeper — think The Police, The Cure rhythm parts
+        { "80s Clean",       1.80f, 0.55f, 0.55f },
+        // Thick Detune: very slow, deep. Acts like a doubler/thickener
+        { "Thick Detune",    0.15f, 0.70f, 0.60f },
+        // Vibrato: 100% wet, fast modulation — pitch wobble, no dry signal
+        { "Vibrato",         5.50f, 0.80f, 1.00f },
+    };
+
+    static constexpr int numPresets = static_cast<int> (sizeof (presets) / sizeof (presets[0]));
+
+    int getNumPrograms() override { return numPresets; }
+    int getCurrentProgram() override { return currentPreset; }
+    void setCurrentProgram (int index) override;
+    const juce::String getProgramName (int index) override
+    {
+        return (index >= 0 && index < numPresets) ? presets[index].name : juce::String();
+    }
     void changeProgramName (int, const juce::String&) override {}
 
     void getStateInformation (juce::MemoryBlock& destData) override;
@@ -59,6 +82,7 @@ private:
     std::atomic<float>* mixParam   = nullptr;
 
     double currentSampleRate = 44100.0;
+    int currentPreset = 0;
 
     // Center delay in ms and max modulation depth in ms
     static constexpr float centerDelayMs = 7.0f;

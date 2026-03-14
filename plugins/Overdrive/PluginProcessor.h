@@ -37,10 +37,33 @@ public:
     bool acceptsMidi() const override { return false; }
     bool producesMidi() const override { return false; }
     double getTailLengthSeconds() const override { return 0.0; }
-    int getNumPrograms() override { return 1; }
-    int getCurrentProgram() override { return 0; }
-    void setCurrentProgram (int) override {}
-    const juce::String getProgramName (int) override { return {}; }
+
+    //==============================================================================
+    // Factory presets
+    struct Preset { const char* name; float drive, tone, level; };
+
+    static constexpr Preset presets[] = {
+        // Clean Boost: minimal clipping, full bandwidth, push the amp harder
+        { "Clean Boost",   0.08f, 0.75f, 0.85f },
+        // Blues: edge of breakup, warm and vocal. Think B.B. King, SRV clean-ish
+        { "Blues",         0.30f, 0.45f, 0.55f },
+        // Classic Rock: crunchy mids, balanced tone. AC/DC rhythm territory
+        { "Classic Rock",  0.50f, 0.50f, 0.50f },
+        // Hard Rock: aggressive saturation, slightly brighter for cut
+        { "Hard Rock",     0.70f, 0.55f, 0.45f },
+        // Lead: heavy sustain for solos, bright for articulation, lower level to compensate gain
+        { "Lead",          0.90f, 0.65f, 0.35f },
+    };
+
+    static constexpr int numPresets = static_cast<int> (sizeof (presets) / sizeof (presets[0]));
+
+    int getNumPrograms() override { return numPresets; }
+    int getCurrentProgram() override { return currentPreset; }
+    void setCurrentProgram (int index) override;
+    const juce::String getProgramName (int index) override
+    {
+        return (index >= 0 && index < numPresets) ? presets[index].name : juce::String();
+    }
     void changeProgramName (int, const juce::String&) override {}
 
     void getStateInformation (juce::MemoryBlock& destData) override;
@@ -61,6 +84,7 @@ private:
     std::atomic<float>* levelParam = nullptr;
 
     double currentSampleRate = 44100.0;
+    int currentPreset = 0;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (OverdriveProcessor)
 };

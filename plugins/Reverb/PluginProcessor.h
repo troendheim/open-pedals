@@ -36,10 +36,35 @@ public:
     bool acceptsMidi() const override { return false; }
     bool producesMidi() const override { return false; }
     double getTailLengthSeconds() const override { return 10.0; }
-    int getNumPrograms() override { return 1; }
-    int getCurrentProgram() override { return 0; }
-    void setCurrentProgram (int) override {}
-    const juce::String getProgramName (int) override { return {}; }
+
+    //==============================================================================
+    // Factory presets
+    struct Preset { const char* name; float decay, damping, mix, predelay; };
+
+    static constexpr Preset presets[] = {
+        // Tight Room: small practice-amp feel, controlled and dry
+        { "Tight Room",     0.60f, 0.70f, 0.15f,  5.0f },
+        // Studio Room: natural room ambience for recording, keeps clarity
+        { "Studio Room",    1.20f, 0.55f, 0.20f, 15.0f },
+        // Spring: surf/twang character, moderate decay, high damping for drip
+        { "Spring",         1.50f, 0.75f, 0.30f,  0.0f },
+        // Warm Hall: concert hall, long and warm with moderate presence
+        { "Warm Hall",      3.50f, 0.45f, 0.30f, 30.0f },
+        // Cathedral: massive space, long tail, very immersive
+        { "Cathedral",      7.00f, 0.25f, 0.40f, 50.0f },
+        // Ambient Wash: post-rock/shoegaze, huge reverb dominates the signal
+        { "Ambient Wash",   8.50f, 0.20f, 0.60f, 80.0f },
+    };
+
+    static constexpr int numPresets = static_cast<int> (sizeof (presets) / sizeof (presets[0]));
+
+    int getNumPrograms() override { return numPresets; }
+    int getCurrentProgram() override { return currentPreset; }
+    void setCurrentProgram (int index) override;
+    const juce::String getProgramName (int index) override
+    {
+        return (index >= 0 && index < numPresets) ? presets[index].name : juce::String();
+    }
     void changeProgramName (int, const juce::String&) override {}
 
     void getStateInformation (juce::MemoryBlock& destData) override;
@@ -60,6 +85,7 @@ private:
     std::atomic<float>* preDelayParam = nullptr;
 
     double currentSampleRate = 44100.0;
+    int currentPreset = 0;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ReverbProcessor)
 };

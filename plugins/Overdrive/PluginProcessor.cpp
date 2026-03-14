@@ -21,6 +21,19 @@ OverdriveProcessor::OverdriveProcessor()
     driveParam = apvts.getRawParameterValue ("drive");
     toneParam  = apvts.getRawParameterValue ("tone");
     levelParam = apvts.getRawParameterValue ("level");
+
+    // Load the default preset (first one)
+    setCurrentProgram (0);
+}
+
+void OverdriveProcessor::setCurrentProgram (int index)
+{
+    if (index < 0 || index >= numPresets) return;
+    currentPreset = index;
+    const auto& p = presets[index];
+    apvts.getParameter ("drive")->setValueNotifyingHost (apvts.getParameter ("drive")->convertTo0to1 (p.drive));
+    apvts.getParameter ("tone")->setValueNotifyingHost (apvts.getParameter ("tone")->convertTo0to1 (p.tone));
+    apvts.getParameter ("level")->setValueNotifyingHost (apvts.getParameter ("level")->convertTo0to1 (p.level));
 }
 
 juce::AudioProcessorValueTreeState::ParameterLayout OverdriveProcessor::createParameterLayout()

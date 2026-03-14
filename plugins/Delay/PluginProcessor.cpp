@@ -22,6 +22,19 @@ DelayProcessor::DelayProcessor()
     feedbackParam = apvts.getRawParameterValue ("feedback");
     mixParam      = apvts.getRawParameterValue ("mix");
     toneParam     = apvts.getRawParameterValue ("tone");
+
+    setCurrentProgram (0);
+}
+
+void DelayProcessor::setCurrentProgram (int index)
+{
+    if (index < 0 || index >= numPresets) return;
+    currentPreset = index;
+    const auto& p = presets[index];
+    apvts.getParameter ("time")->setValueNotifyingHost (apvts.getParameter ("time")->convertTo0to1 (p.time));
+    apvts.getParameter ("feedback")->setValueNotifyingHost (apvts.getParameter ("feedback")->convertTo0to1 (p.feedback));
+    apvts.getParameter ("mix")->setValueNotifyingHost (apvts.getParameter ("mix")->convertTo0to1 (p.mix));
+    apvts.getParameter ("tone")->setValueNotifyingHost (apvts.getParameter ("tone")->convertTo0to1 (p.tone));
 }
 
 juce::AudioProcessorValueTreeState::ParameterLayout DelayProcessor::createParameterLayout()

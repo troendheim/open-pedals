@@ -36,10 +36,35 @@ public:
     bool acceptsMidi() const override { return false; }
     bool producesMidi() const override { return false; }
     double getTailLengthSeconds() const override { return 0.0; }
-    int getNumPrograms() override { return 1; }
-    int getCurrentProgram() override { return 0; }
-    void setCurrentProgram (int) override {}
-    const juce::String getProgramName (int) override { return {}; }
+
+    //==============================================================================
+    // Factory presets
+    struct Preset { const char* name; float threshold, ratio, attack, release, makeup; };
+
+    static constexpr Preset presets[] = {
+        // Light Touch: transparent leveling, barely noticeable. Gentle single-coil taming
+        { "Light Touch",      -12.0f,  2.0f, 15.0f, 150.0f,  2.0f },
+        // Studio: balanced all-purpose compression for tracking/mixing
+        { "Studio",           -18.0f,  3.5f, 12.0f, 120.0f,  4.0f },
+        // Country Squeeze: fast attack, moderate ratio — chicken-pickin' snap
+        { "Country Squeeze",  -22.0f,  4.0f,  2.0f,  80.0f,  6.0f },
+        // Sustainer: slow attack preserves pick transient, high ratio for singing sustain
+        { "Sustainer",        -25.0f,  6.0f, 40.0f, 200.0f,  8.0f },
+        // Rhythm Tightener: keeps strumming dynamics even, fast response
+        { "Rhythm Tightener", -20.0f,  5.0f,  5.0f,  60.0f,  5.0f },
+        // Limiter: brick-wall protection, aggressive clamping
+        { "Limiter",          -10.0f, 20.0f,  0.5f,  50.0f,  3.0f },
+    };
+
+    static constexpr int numPresets = static_cast<int> (sizeof (presets) / sizeof (presets[0]));
+
+    int getNumPrograms() override { return numPresets; }
+    int getCurrentProgram() override { return currentPreset; }
+    void setCurrentProgram (int index) override;
+    const juce::String getProgramName (int index) override
+    {
+        return (index >= 0 && index < numPresets) ? presets[index].name : juce::String();
+    }
     void changeProgramName (int, const juce::String&) override {}
 
     void getStateInformation (juce::MemoryBlock& destData) override;
@@ -59,6 +84,7 @@ private:
     std::atomic<float>* makeupGainParam = nullptr;
 
     double currentSampleRate = 44100.0;
+    int currentPreset = 0;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (CompressorProcessor)
 };

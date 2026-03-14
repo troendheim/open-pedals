@@ -23,6 +23,20 @@ CompressorProcessor::CompressorProcessor()
     attackParam     = apvts.getRawParameterValue ("attack");
     releaseParam    = apvts.getRawParameterValue ("release");
     makeupGainParam = apvts.getRawParameterValue ("makeup");
+
+    setCurrentProgram (0);
+}
+
+void CompressorProcessor::setCurrentProgram (int index)
+{
+    if (index < 0 || index >= numPresets) return;
+    currentPreset = index;
+    const auto& p = presets[index];
+    apvts.getParameter ("threshold")->setValueNotifyingHost (apvts.getParameter ("threshold")->convertTo0to1 (p.threshold));
+    apvts.getParameter ("ratio")->setValueNotifyingHost (apvts.getParameter ("ratio")->convertTo0to1 (p.ratio));
+    apvts.getParameter ("attack")->setValueNotifyingHost (apvts.getParameter ("attack")->convertTo0to1 (p.attack));
+    apvts.getParameter ("release")->setValueNotifyingHost (apvts.getParameter ("release")->convertTo0to1 (p.release));
+    apvts.getParameter ("makeup")->setValueNotifyingHost (apvts.getParameter ("makeup")->convertTo0to1 (p.makeup));
 }
 
 juce::AudioProcessorValueTreeState::ParameterLayout CompressorProcessor::createParameterLayout()
