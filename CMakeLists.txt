@@ -55,9 +55,55 @@ function(openpedals_add_plugin)
     )
 endfunction()
 
-# Add all plugins
+# Add all plugins — Original 5
 add_subdirectory(plugins/Overdrive)
 add_subdirectory(plugins/Delay)
 add_subdirectory(plugins/Chorus)
 add_subdirectory(plugins/Reverb)
 add_subdirectory(plugins/Compressor)
+
+# Distortion family
+add_subdirectory(plugins/Distortion)
+add_subdirectory(plugins/Fuzz)
+add_subdirectory(plugins/AmpSim)
+
+# Modulation effects
+add_subdirectory(plugins/Flanger)
+add_subdirectory(plugins/Phaser)
+add_subdirectory(plugins/Vibrato)
+add_subdirectory(plugins/Tremolo)
+add_subdirectory(plugins/Rotary)
+add_subdirectory(plugins/UniVibe)
+add_subdirectory(plugins/RingMod)
+
+# Delay variants
+add_subdirectory(plugins/AnalogDelay)
+add_subdirectory(plugins/TapeDelay)
+add_subdirectory(plugins/ReverseDelay)
+
+# Reverb variants
+add_subdirectory(plugins/PlateReverb)
+add_subdirectory(plugins/SpringReverb)
+add_subdirectory(plugins/ShimmerReverb)
+
+# Dynamics & EQ
+add_subdirectory(plugins/GraphicEQ)
+add_subdirectory(plugins/ParametricEQ)
+add_subdirectory(plugins/Wah)
+add_subdirectory(plugins/AutoWah)
+add_subdirectory(plugins/NoiseGate)
+add_subdirectory(plugins/Limiter)
+
+# Pitch effects
+add_subdirectory(plugins/Octaver)
+add_subdirectory(plugins/PitchShifter)
+add_subdirectory(plugins/Harmonizer)
+add_subdirectory(plugins/Detune)
+
+# Utility & Special
+add_subdirectory(plugins/Tuner)
+add_subdirectory(plugins/SlowGear)
+add_subdirectory(plugins/Looper)
+add_subdirectory(plugins/Slicer)
+add_subdirectory(plugins/AcousticSim)
+add_subdirectory(plugins/Humanizer)

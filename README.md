@@ -1,21 +1,90 @@
 # OpenPedals
 
-A growing collection of guitar effect pedal plugins for macOS, built as Audio Units for use in GarageBand, Logic Pro, and any other AU-compatible host.
+A collection of 37 guitar effect pedal plugins for macOS, built as Audio Units for use in GarageBand, Logic Pro, and any other AU-compatible host.
 Every plugin is free and open source. No subscriptions, no telemetry.
 
 The code has been written mostly with help from OpenCode and Claude Opus 4.6. Let's see how far we can get!
 
 ## Available Effects
 
-| Plugin | Parameters | Description |
-|--------|-----------|-------------|
-| **OP Overdrive** | Drive, Tone, Level | Soft-clip overdrive with 4x oversampling and tone shaping |
-| **OP Delay** | Time, Feedback, Mix, Tone | Digital delay with filtered feedback path (1--2000 ms) |
-| **OP Chorus** | Rate, Depth, Mix | LFO-modulated delay line chorus |
-| **OP Reverb** | Decay, Damping, Mix, Pre-Delay | Room reverb with adjustable pre-delay |
-| **OP Compressor** | Threshold, Ratio, Attack, Release, Makeup Gain | Dynamics compressor with makeup gain stage |
+### Gain & Drive
 
-All plugins pass Apple's `auval` validation suite and are built as Universal Binaries (Apple Silicon + Intel).
+| Plugin | Code | Parameters | Description |
+|--------|------|-----------|-------------|
+| **OP Overdrive** | `Ovdr` | Drive, Tone, Level | Soft-clip overdrive with 4x oversampling and tone shaping |
+| **OP Distortion** | `Dist` | Drive, Tone, Level, Mode | Hard/tube/fuzz clipping modes with 4x oversampling |
+| **OP Fuzz** | `Fuzz` | Fuzz, Tone, Level | Extreme asymmetric clipping with 4x oversampling |
+| **OP Amp Sim** | `AmSm` | Gain, Bass, Mid, Treble, Volume | Preamp, tone stack, power amp, and cabinet simulation chain |
+
+### Modulation
+
+| Plugin | Code | Parameters | Description |
+|--------|------|-----------|-------------|
+| **OP Chorus** | `Chrs` | Rate, Depth, Mix | LFO-modulated delay line chorus |
+| **OP Flanger** | `Flgr` | Rate, Depth, Feedback, Mix | Short modulated delay with resonant feedback |
+| **OP Phaser** | `Phsr` | Rate, Depth, Feedback, Mix | 4-stage allpass filter chain |
+| **OP Vibrato** | `Vibr` | Rate, Depth | 100% wet pitch modulation |
+| **OP Tremolo** | `Trem` | Rate, Depth, Shape | LFO amplitude modulation with waveform control |
+| **OP Rotary** | `Rtry` | Speed, Depth, Mix | Leslie speaker simulation with horn/drum |
+| **OP Uni-Vibe** | `UVib` | Speed, Intensity, Volume | Vintage phase shifter with non-uniform allpass spacing |
+| **OP Ring Mod** | `RngM` | Frequency, Mix, Shape | Ring modulation with sine/square carrier |
+
+### Delay
+
+| Plugin | Code | Parameters | Description |
+|--------|------|-----------|-------------|
+| **OP Delay** | `DDly` | Time, Feedback, Mix, Tone | Digital delay with filtered feedback (1--2000 ms) |
+| **OP Analog Delay** | `ADly` | Time, Feedback, Tone, Mix | BBD emulation with filtering and modulation |
+| **OP Tape Delay** | `TDly` | Time, Feedback, Flutter, Mix | Tape saturation, flutter, progressive filtering |
+| **OP Reverse Delay** | `RDly` | Time, Feedback, Mix | Double-buffered reverse playback delay |
+
+### Reverb
+
+| Plugin | Code | Parameters | Description |
+|--------|------|-----------|-------------|
+| **OP Reverb** | `Rvrb` | Decay, Damping, Mix, Pre-Delay | Room reverb with adjustable pre-delay |
+| **OP Plate Reverb** | `PRvb` | Decay, Damping, Mix, Pre-Delay | Bright, tight plate character |
+| **OP Spring Reverb** | `SRvb` | Decay, Drip, Mix | Spring tank drip/resonance with allpass pre-filtering |
+| **OP Shimmer Reverb** | `ShRv` | Decay, Shimmer, Mix, Damping | Octave-up pitch shift in reverb feedback loop |
+
+### EQ & Filter
+
+| Plugin | Code | Parameters | Description |
+|--------|------|-----------|-------------|
+| **OP Graphic EQ** | `GrEQ` | 7 frequency bands, Level | 7-band fixed-frequency peaking EQ |
+| **OP Parametric EQ** | `PrEQ` | 3 bands (freq, gain, Q each) | 3-band fully parametric EQ |
+| **OP Wah** | `Wahh` | Position, Q, Volume | Manual bandpass filter (position automatable) |
+| **OP Auto-Wah** | `AWah` | Sensitivity, Frequency, Q, Mix | Envelope-controlled bandpass filter |
+
+### Dynamics
+
+| Plugin | Code | Parameters | Description |
+|--------|------|-----------|-------------|
+| **OP Compressor** | `Comp` | Threshold, Ratio, Attack, Release, Makeup | Dynamics compressor with makeup gain |
+| **OP Noise Gate** | `NGte` | Threshold, Attack, Hold, Release | Gate with attack/hold/release envelope |
+| **OP Limiter** | `Lmtr` | Threshold, Release | Brick-wall peak limiter |
+
+### Pitch
+
+| Plugin | Code | Parameters | Description |
+|--------|------|-----------|-------------|
+| **OP Octaver** | `Octv` | Sub Level, Up Level, Dry Level | Sub-octave and octave-up via zero-crossing detection |
+| **OP Pitch Shifter** | `PtSh` | Semitones, Fine, Mix | Granular pitch shift, +/-12 semitones |
+| **OP Harmonizer** | `Harm` | Interval, Mix, Detune | Pitch-shifted harmony blended with dry signal |
+| **OP Detune** | `Dtne` | Detune, Mix | Stereo detuning for width and thickness |
+
+### Utility & Special
+
+| Plugin | Code | Parameters | Description |
+|--------|------|-----------|-------------|
+| **OP Tuner** | `Tunr` | Mute | Mute-switch utility for silent tuning |
+| **OP Slow Gear** | `SlGr` | Sensitivity, Attack, Volume | Auto-swell volume effect |
+| **OP Looper** | `Loop` | Freeze | Freeze/loop circular buffer |
+| **OP Slicer** | `Slcr` | Rate, Depth, Shape | Rhythmic gate/chopper effect |
+| **OP Acoustic Sim** | `AcSm` | Body, Top, Level | EQ shaping for acoustic guitar character |
+| **OP Humanizer** | `Hmzr` | Rate, Depth, Vowel, Mix | Formant filter morphing through vowel sounds |
+
+All 37 plugins pass Apple's `auval` validation suite and are built as Universal Binaries (Apple Silicon + Intel).
 
 ## Building from Source
 
@@ -66,16 +135,6 @@ Run full validation on a specific plugin (e.g., Overdrive):
 auval -v aufx Ovdr OpPd
 ```
 
-All five plugin codes for validation:
-
-| Plugin | auval command |
-|--------|--------------|
-| Overdrive | `auval -v aufx Ovdr OpPd` |
-| Delay | `auval -v aufx DDly OpPd` |
-| Chorus | `auval -v aufx Chrs OpPd` |
-| Reverb | `auval -v aufx Rvrb OpPd` |
-| Compressor | `auval -v aufx Comp OpPd` |
-
 ### Using in GarageBand
 
 1. Build and install the plugins (see above)
@@ -93,78 +152,23 @@ openpedals/
   JUCE/                   # JUCE framework (git submodule)
   common/                 # Shared DSP library (header-only)
     BiquadFilter.h        #   IIR filter (Audio EQ Cookbook)
+    CabinetSim.h          #   Speaker cabinet simulation
     DelayLine.h           #   Circular buffer with interpolation
     EnvelopeFollower.h    #   Amplitude envelope detector
     LFO.h                 #   Low-frequency oscillator
     Oversampling.h        #   JUCE oversampling wrapper
+    ToneStack.h           #   3-band bass/mid/treble EQ
     Waveshaper.h          #   Nonlinear clipping functions
   plugins/
     Overdrive/            # Each plugin has its own CMakeLists.txt,
     Delay/                #   PluginProcessor.h, and
     Chorus/               #   PluginProcessor.cpp
-    Reverb/
-    Compressor/
+    ...                   #   (37 plugin directories total)
 ```
 
 The shared DSP library in `common/` provides reusable building blocks that all plugins draw from. Each plugin is a thin layer that wires together the appropriate DSP components with an APVTS parameter layout.
 
 ## Roadmap
-
-### Gain & Drive
-
-- [ ] Distortion -- harder clipping character
-- [ ] Fuzz -- square-wave-style fuzz with gating
-- [ ] Preamp / Amp Sim -- tube amp modeling
-
-### Modulation
-
-- [ ] Flanger -- short swept delay with feedback
-- [ ] Phaser -- all-pass filter sweep
-- [ ] Vibrato -- pitch modulation without dry mix
-- [ ] Tremolo -- amplitude modulation
-- [ ] Rotary Speaker -- Leslie cabinet simulation
-- [ ] Uni-Vibe -- photocell-style phaser/vibrato
-- [ ] Ring Modulator -- carrier frequency multiplication
-
-### Delay
-
-- [ ] Analog Delay -- BBD-style with degradation and filtering
-- [ ] Tape Delay -- tape saturation, wow/flutter, and modulated repeats
-- [ ] Reverse Delay -- reversed playback delay
-
-### Reverb
-
-- [ ] Plate Reverb -- dense metallic reverb character
-- [ ] Spring Reverb -- drip and splash of spring tanks
-- [ ] Shimmer Reverb -- octave-shifted reverb tails
-
-### EQ & Filter
-
-- [ ] Graphic EQ -- fixed-band graphic equalizer
-- [ ] Parametric EQ -- fully parametric bands
-- [ ] Wah -- pedal-controlled bandpass sweep
-- [ ] Auto-Wah -- envelope-controlled filter
-
-### Dynamics
-
-- [ ] Noise Gate -- threshold-based signal gate
-- [ ] Limiter -- brick-wall peak limiter
-
-### Pitch
-
-- [ ] Octaver -- sub-octave and octave-up generation
-- [ ] Pitch Shifter -- chromatic pitch transposition
-- [ ] Harmonizer -- intelligent harmony generation
-- [ ] Detune / Doubler -- subtle pitch detune for widening
-
-### Utility & Special
-
-- [ ] Tuner -- chromatic tuner display
-- [ ] Slow Gear -- auto-swell volume effect
-- [ ] Looper -- real-time loop recording and playback
-- [ ] Slicer -- rhythmic gating patterns
-- [ ] Acoustic Simulator -- electric-to-acoustic tone shaping
-- [ ] Humanizer -- vowel formant filter (talk box style)
 
 ### Future Export Targets
 
@@ -175,6 +179,13 @@ The project currently builds AU (Audio Unit v2) plugins for macOS. Planned forma
 - [ ] **CLAP** -- open plugin standard gaining traction in Bitwig, Reaper, and others
 - [ ] **Standalone** -- self-contained apps with built-in audio I/O for practice and live use
 - [ ] **LV2** -- Linux plugin format for Ardour, Carla, and other Linux DAWs
+
+### Future Effects
+
+- [ ] Custom skeuomorphic pedal GUIs
+- [ ] MIDI-controllable parameters
+- [ ] Stereo widening and spatial effects
+- [ ] Multi-effects chain plugin
 
 ## Technical Details
 
