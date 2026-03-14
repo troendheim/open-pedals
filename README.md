@@ -9,11 +9,11 @@ The code has been written mostly with help from OpenCode and Claude Opus 4.6. Le
 
 | Plugin | Parameters | Description |
 |--------|-----------|-------------|
-| **OpenPedals Overdrive** | Drive, Tone, Level | Soft-clip overdrive with 4x oversampling and tone shaping |
-| **OpenPedals Delay** | Time, Feedback, Mix, Tone | Digital delay with filtered feedback path (1--2000 ms) |
-| **OpenPedals Chorus** | Rate, Depth, Mix | LFO-modulated delay line chorus |
-| **OpenPedals Reverb** | Decay, Damping, Mix, Pre-Delay | Room reverb with adjustable pre-delay |
-| **OpenPedals Compressor** | Threshold, Ratio, Attack, Release, Makeup Gain | Dynamics compressor with makeup gain stage |
+| **OP Overdrive** | Drive, Tone, Level | Soft-clip overdrive with 4x oversampling and tone shaping |
+| **OP Delay** | Time, Feedback, Mix, Tone | Digital delay with filtered feedback path (1--2000 ms) |
+| **OP Chorus** | Rate, Depth, Mix | LFO-modulated delay line chorus |
+| **OP Reverb** | Decay, Damping, Mix, Pre-Delay | Room reverb with adjustable pre-delay |
+| **OP Compressor** | Threshold, Ratio, Attack, Release, Makeup Gain | Dynamics compressor with makeup gain stage |
 
 All plugins pass Apple's `auval` validation suite and are built as Universal Binaries (Apple Silicon + Intel).
 
