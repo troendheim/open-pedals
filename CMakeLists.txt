@@ -23,7 +23,7 @@ function(openpedals_add_plugin)
     cmake_parse_arguments(PLUGIN "" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
 
     juce_add_plugin(${PLUGIN_TARGET}
-        COMPANY_NAME "OpenPedals"
+        COMPANY_NAME "OP"
         PLUGIN_MANUFACTURER_CODE OpPd
         PLUGIN_CODE ${PLUGIN_PLUGIN_CODE}
         FORMATS AU

@@ -32,7 +32,7 @@ public:
     }
 
     bool hasEditor() const override { return true; }
-    const juce::String getName() const override { return "OP Compressor"; }
+    const juce::String getName() const override { return "Compressor"; }
     bool acceptsMidi() const override { return false; }
     bool producesMidi() const override { return false; }
     double getTailLengthSeconds() const override { return 0.0; }
