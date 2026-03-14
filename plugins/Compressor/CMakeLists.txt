@@ -1,6 +1,6 @@
-bosslike_add_plugin(
-    TARGET BosslikeCompressor
-    PLUGIN_NAME "Bosslike Compressor"
+openpedals_add_plugin(
+    TARGET OpenPedalsCompressor
+    PLUGIN_NAME "OpenPedals Compressor"
     PLUGIN_CODE Comp
     SOURCES
         ${CMAKE_CURRENT_SOURCE_DIR}/PluginProcessor.cpp

@@ -1,7 +1,7 @@
 /*
  * BiquadFilter.h — Second-order IIR filter (Audio EQ Cookbook)
  *
- * Part of the Bosslike guitar effects plugin collection.
+ * Part of the OpenPedals guitar effects plugin collection.
  * Copyright (C) 2026 Richard Troendheim
  *
  * This program is free software: you can redistribute it and/or modify
@@ -14,7 +14,7 @@
 
 #include <cmath>
 
-namespace bosslike {
+namespace openpedals {
 
 class BiquadFilter
 {
@@ -148,4 +148,4 @@ private:
     float z1 = 0.0f, z2 = 0.0f;
 };
 
-} // namespace bosslike
+} // namespace openpedals

@@ -1,7 +1,7 @@
 /*
- * Bosslike Overdrive — Tube-style soft-clipping overdrive pedal
+ * OpenPedals Overdrive — Tube-style soft-clipping overdrive pedal
  *
- * Part of the Bosslike guitar effects plugin collection.
+ * Part of the OpenPedals guitar effects plugin collection.
  * Copyright (C) 2026 Richard Troendheim
  *
  * This program is free software: you can redistribute it and/or modify
@@ -70,8 +70,8 @@ void OverdriveProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::M
 
     // Update tone filters
     const double oversampledRate = currentSampleRate * 4.0; // 4x oversampling
-    toneFilterL.setParameters (bosslike::BiquadFilter::Type::LowPass, toneCutoff, 0.707, 0.0, oversampledRate);
-    toneFilterR.setParameters (bosslike::BiquadFilter::Type::LowPass, toneCutoff, 0.707, 0.0, oversampledRate);
+    toneFilterL.setParameters (openpedals::BiquadFilter::Type::LowPass, toneCutoff, 0.707, 0.0, oversampledRate);
+    toneFilterR.setParameters (openpedals::BiquadFilter::Type::LowPass, toneCutoff, 0.707, 0.0, oversampledRate);
 
     // Upsample, process, downsample
     juce::dsp::AudioBlock<float> block (buffer);
@@ -91,7 +91,7 @@ void OverdriveProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::M
             float sample = channelData[i] * inputGain;
 
             // Waveshape: soft clip using tanh
-            sample = bosslike::Waveshaper::softClip (sample);
+            sample = openpedals::Waveshaper::softClip (sample);
 
             // Tone filter
             sample = toneFilter.process (sample);

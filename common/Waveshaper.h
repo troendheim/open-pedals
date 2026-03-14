@@ -1,7 +1,7 @@
 /*
  * Waveshaper.h — Nonlinear transfer functions for overdrive/distortion
  *
- * Part of the Bosslike guitar effects plugin collection.
+ * Part of the OpenPedals guitar effects plugin collection.
  * Copyright (C) 2026 Richard Troendheim
  *
  * This program is free software: you can redistribute it and/or modify
@@ -15,7 +15,7 @@
 #include <cmath>
 #include <algorithm>
 
-namespace bosslike {
+namespace openpedals {
 namespace Waveshaper {
 
     // Soft clipping using hyperbolic tangent — warm, tube-like character
@@ -48,4 +48,4 @@ namespace Waveshaper {
     }
 
 } // namespace Waveshaper
-} // namespace bosslike
+} // namespace openpedals

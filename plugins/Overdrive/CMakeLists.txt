@@ -1,6 +1,6 @@
-bosslike_add_plugin(
-    TARGET BosslikeOverdrive
-    PLUGIN_NAME "Bosslike Overdrive"
+openpedals_add_plugin(
+    TARGET OpenPedalsOverdrive
+    PLUGIN_NAME "OpenPedals Overdrive"
     PLUGIN_CODE Ovdr
     SOURCES
         ${CMAKE_CURRENT_SOURCE_DIR}/PluginProcessor.cpp

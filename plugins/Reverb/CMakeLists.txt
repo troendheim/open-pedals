@@ -1,6 +1,6 @@
-bosslike_add_plugin(
-    TARGET BosslikeReverb
-    PLUGIN_NAME "Bosslike Reverb"
+openpedals_add_plugin(
+    TARGET OpenPedalsReverb
+    PLUGIN_NAME "OpenPedals Reverb"
     PLUGIN_CODE Rvrb
     SOURCES
         ${CMAKE_CURRENT_SOURCE_DIR}/PluginProcessor.cpp

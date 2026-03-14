@@ -1,7 +1,7 @@
 /*
- * Bosslike Chorus — Classic chorus effect with LFO-modulated delay
+ * OpenPedals Chorus — Classic chorus effect with LFO-modulated delay
  *
- * Part of the Bosslike guitar effects plugin collection.
+ * Part of the OpenPedals guitar effects plugin collection.
  * Copyright (C) 2026 Richard Troendheim
  *
  * This program is free software: you can redistribute it and/or modify
@@ -61,8 +61,8 @@ void ChorusProcessor::prepareToPlay (double sampleRate, int /*samplesPerBlock*/)
 
     lfoL.setSampleRate (sampleRate);
     lfoR.setSampleRate (sampleRate);
-    lfoL.setWaveform (bosslike::LFO::Waveform::Sine);
-    lfoR.setWaveform (bosslike::LFO::Waveform::Sine);
+    lfoL.setWaveform (openpedals::LFO::Waveform::Sine);
+    lfoR.setWaveform (openpedals::LFO::Waveform::Sine);
     lfoL.reset();
     lfoR.reset();
 }

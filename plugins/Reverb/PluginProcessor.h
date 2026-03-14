@@ -1,7 +1,7 @@
 /*
- * Bosslike Reverb — Hall/Room reverb with pre-delay
+ * OpenPedals Reverb — Hall/Room reverb with pre-delay
  *
- * Part of the Bosslike guitar effects plugin collection.
+ * Part of the OpenPedals guitar effects plugin collection.
  * Copyright (C) 2026 Richard Troendheim
  *
  * This program is free software: you can redistribute it and/or modify
@@ -32,7 +32,7 @@ public:
     }
 
     bool hasEditor() const override { return true; }
-    const juce::String getName() const override { return "Bosslike Reverb"; }
+    const juce::String getName() const override { return "OpenPedals Reverb"; }
     bool acceptsMidi() const override { return false; }
     bool producesMidi() const override { return false; }
     double getTailLengthSeconds() const override { return 10.0; }
@@ -51,7 +51,7 @@ private:
 
     // DSP
     juce::dsp::Reverb reverb;
-    bosslike::DelayLine<float> preDelayL, preDelayR;
+    openpedals::DelayLine<float> preDelayL, preDelayR;
 
     std::atomic<float>* decayParam    = nullptr;
     std::atomic<float>* dampingParam  = nullptr;

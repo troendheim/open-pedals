@@ -1,7 +1,7 @@
 /*
- * Bosslike Compressor — Dynamic range compressor
+ * OpenPedals Compressor — Dynamic range compressor
  *
- * Part of the Bosslike guitar effects plugin collection.
+ * Part of the OpenPedals guitar effects plugin collection.
  * Copyright (C) 2026 Richard Troendheim
  *
  * This program is free software: you can redistribute it and/or modify
@@ -32,7 +32,7 @@ public:
     }
 
     bool hasEditor() const override { return true; }
-    const juce::String getName() const override { return "Bosslike Compressor"; }
+    const juce::String getName() const override { return "OpenPedals Compressor"; }
     bool acceptsMidi() const override { return false; }
     bool producesMidi() const override { return false; }
     double getTailLengthSeconds() const override { return 0.0; }

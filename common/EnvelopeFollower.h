@@ -1,7 +1,7 @@
 /*
  * EnvelopeFollower.h — Amplitude envelope detector with attack/release
  *
- * Part of the Bosslike guitar effects plugin collection.
+ * Part of the OpenPedals guitar effects plugin collection.
  * Copyright (C) 2026 Richard Troendheim
  *
  * This program is free software: you can redistribute it and/or modify
@@ -15,7 +15,7 @@
 #include <cmath>
 #include <algorithm>
 
-namespace bosslike {
+namespace openpedals {
 
 class EnvelopeFollower
 {
@@ -86,4 +86,4 @@ private:
     float envelope = 0.0f;
 };
 
-} // namespace bosslike
+} // namespace openpedals

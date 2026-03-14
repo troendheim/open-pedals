@@ -1,10 +1,10 @@
-# Bosslike
+# OpenPedals
 
 A growing collection of guitar effect pedal plugins for macOS, built as Audio Units for use in GarageBand, Logic Pro, and any other AU-compatible host.
 
 ## Motivation
 
-Stock DAW effects are designed for mixing, not for guitarists. They lack the character, responsiveness, and familiar parameter layouts that pedalboard players expect. Bosslike aims to fill that gap with a comprehensive set of stompbox-style effects -- each focused on doing one thing well, with a minimal parameter set that makes sense to guitar players, not mixing engineers.
+Stock DAW effects are designed for mixing, not for guitarists. They lack the character, responsiveness, and familiar parameter layouts that pedalboard players expect. OpenPedals aims to fill that gap with a comprehensive set of stompbox-style effects -- each focused on doing one thing well, with a minimal parameter set that makes sense to guitar players, not mixing engineers.
 
 Every plugin is free and open source. No subscriptions, no dongles, no telemetry.
 
@@ -12,11 +12,11 @@ Every plugin is free and open source. No subscriptions, no dongles, no telemetry
 
 | Plugin | Parameters | Description |
 |--------|-----------|-------------|
-| **Bosslike Overdrive** | Drive, Tone, Level | Soft-clip overdrive with 4x oversampling and tone shaping |
-| **Bosslike Delay** | Time, Feedback, Mix, Tone | Digital delay with filtered feedback path (1--2000 ms) |
-| **Bosslike Chorus** | Rate, Depth, Mix | LFO-modulated delay line chorus |
-| **Bosslike Reverb** | Decay, Damping, Mix, Pre-Delay | Room reverb with adjustable pre-delay |
-| **Bosslike Compressor** | Threshold, Ratio, Attack, Release, Makeup Gain | Dynamics compressor with makeup gain stage |
+| **OpenPedals Overdrive** | Drive, Tone, Level | Soft-clip overdrive with 4x oversampling and tone shaping |
+| **OpenPedals Delay** | Time, Feedback, Mix, Tone | Digital delay with filtered feedback path (1--2000 ms) |
+| **OpenPedals Chorus** | Rate, Depth, Mix | LFO-modulated delay line chorus |
+| **OpenPedals Reverb** | Decay, Damping, Mix, Pre-Delay | Room reverb with adjustable pre-delay |
+| **OpenPedals Compressor** | Threshold, Ratio, Attack, Release, Makeup Gain | Dynamics compressor with makeup gain stage |
 
 All plugins pass Apple's `auval` validation suite and are built as Universal Binaries (Apple Silicon + Intel).
 
@@ -32,8 +32,8 @@ All plugins pass Apple's `auval` validation suite and are built as Universal Bin
 ### Clone
 
 ```bash
-git clone --recurse-submodules https://github.com/your-username/bosslike-vsts.git
-cd bosslike-vsts
+git clone --recurse-submodules https://github.com/your-username/openpedals.git
+cd openpedals
 ```
 
 If you already cloned without `--recurse-submodules`:
@@ -57,39 +57,39 @@ The build produces AU (Audio Unit v2) `.component` bundles. With `COPY_PLUGIN_AF
 
 ### Verify Installation
 
-List registered Bosslike plugins:
+List registered OpenPedals plugins:
 
 ```bash
-auval -a | grep -i bosslike
+auval -a | grep -i openpedals
 ```
 
 Run full validation on a specific plugin (e.g., Overdrive):
 
 ```bash
-auval -v aufx Ovdr BsLk
+auval -v aufx Ovdr OpPd
 ```
 
 All five plugin codes for validation:
 
 | Plugin | auval command |
 |--------|--------------|
-| Overdrive | `auval -v aufx Ovdr BsLk` |
-| Delay | `auval -v aufx DDly BsLk` |
-| Chorus | `auval -v aufx Chrs BsLk` |
-| Reverb | `auval -v aufx Rvrb BsLk` |
-| Compressor | `auval -v aufx Comp BsLk` |
+| Overdrive | `auval -v aufx Ovdr OpPd` |
+| Delay | `auval -v aufx DDly OpPd` |
+| Chorus | `auval -v aufx Chrs OpPd` |
+| Reverb | `auval -v aufx Rvrb OpPd` |
+| Compressor | `auval -v aufx Comp OpPd` |
 
 ### Using in GarageBand
 
 1. Build and install the plugins (see above)
 2. Open GarageBand and create or open a project
 3. Select a track, open the Smart Controls or plugin chain
-4. Under **Audio Units > Bosslike**, you will find all installed effects
+4. Under **Audio Units > OpenPedals**, you will find all installed effects
 
 ## Project Structure
 
 ```
-bosslike-vsts/
+openpedals/
   CMakeLists.txt          # Root build configuration
   JUCE/                   # JUCE framework (git submodule)
   common/                 # Shared DSP library (header-only)
@@ -187,7 +187,7 @@ JUCE supports all of these formats from a single codebase, so expanding is large
 - **Minimum macOS:** 11.0 (Big Sur)
 - **Plugin format:** AU v2 (`.component` bundles)
 - **GUI:** Host-provided generic parameter editors (no custom GUIs)
-- **Manufacturer code:** `BsLk`
+- **Manufacturer code:** `OpPd`
 
 ## License
 

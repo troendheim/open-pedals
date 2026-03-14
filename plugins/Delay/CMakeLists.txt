@@ -1,6 +1,6 @@
-bosslike_add_plugin(
-    TARGET BosslikeDelay
-    PLUGIN_NAME "Bosslike Delay"
+openpedals_add_plugin(
+    TARGET OpenPedalsDelay
+    PLUGIN_NAME "OpenPedals Delay"
     PLUGIN_CODE DDly
     SOURCES
         ${CMAKE_CURRENT_SOURCE_DIR}/PluginProcessor.cpp

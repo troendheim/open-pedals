@@ -1,7 +1,7 @@
 /*
- * Bosslike Reverb — Hall/Room reverb with pre-delay
+ * OpenPedals Reverb — Hall/Room reverb with pre-delay
  *
- * Part of the Bosslike guitar effects plugin collection.
+ * Part of the OpenPedals guitar effects plugin collection.
  * Copyright (C) 2026 Richard Troendheim
  *
  * This program is free software: you can redistribute it and/or modify

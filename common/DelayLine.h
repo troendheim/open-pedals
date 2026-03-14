@@ -1,7 +1,7 @@
 /*
  * DelayLine.h — Circular buffer delay line with linear interpolation
  *
- * Part of the Bosslike guitar effects plugin collection.
+ * Part of the OpenPedals guitar effects plugin collection.
  * Copyright (C) 2026 Richard Troendheim
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,7 +17,7 @@
 #include <algorithm>
 #include <cassert>
 
-namespace bosslike {
+namespace openpedals {
 
 template <typename SampleType = float>
 class DelayLine
@@ -92,4 +92,4 @@ private:
     SampleType delay = SampleType (0);
 };
 
-} // namespace bosslike
+} // namespace openpedals

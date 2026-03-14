@@ -1,7 +1,7 @@
 /*
- * Bosslike Delay — Digital delay with feedback and tone control
+ * OpenPedals Delay — Digital delay with feedback and tone control
  *
- * Part of the Bosslike guitar effects plugin collection.
+ * Part of the OpenPedals guitar effects plugin collection.
  * Copyright (C) 2026 Richard Troendheim
  *
  * This program is free software: you can redistribute it and/or modify
@@ -33,7 +33,7 @@ public:
     }
 
     bool hasEditor() const override { return true; }
-    const juce::String getName() const override { return "Bosslike Delay"; }
+    const juce::String getName() const override { return "OpenPedals Delay"; }
     bool acceptsMidi() const override { return false; }
     bool producesMidi() const override { return false; }
     double getTailLengthSeconds() const override { return 2.0; }
@@ -52,8 +52,8 @@ private:
 
     // DSP — one delay line and feedback filter per channel
     static constexpr int maxDelayMs = 2000;
-    bosslike::DelayLine<float> delayLineL, delayLineR;
-    bosslike::BiquadFilter feedbackFilterL, feedbackFilterR;
+    openpedals::DelayLine<float> delayLineL, delayLineR;
+    openpedals::BiquadFilter feedbackFilterL, feedbackFilterR;
 
     float feedbackSampleL = 0.0f;
     float feedbackSampleR = 0.0f;

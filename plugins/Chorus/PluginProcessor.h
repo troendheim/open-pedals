@@ -1,7 +1,7 @@
 /*
- * Bosslike Chorus — Classic chorus effect with LFO-modulated delay
+ * OpenPedals Chorus — Classic chorus effect with LFO-modulated delay
  *
- * Part of the Bosslike guitar effects plugin collection.
+ * Part of the OpenPedals guitar effects plugin collection.
  * Copyright (C) 2026 Richard Troendheim
  *
  * This program is free software: you can redistribute it and/or modify
@@ -33,7 +33,7 @@ public:
     }
 
     bool hasEditor() const override { return true; }
-    const juce::String getName() const override { return "Bosslike Chorus"; }
+    const juce::String getName() const override { return "OpenPedals Chorus"; }
     bool acceptsMidi() const override { return false; }
     bool producesMidi() const override { return false; }
     double getTailLengthSeconds() const override { return 0.0; }
@@ -51,8 +51,8 @@ private:
     juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
 
     // DSP
-    bosslike::DelayLine<float> delayLineL, delayLineR;
-    bosslike::LFO lfoL, lfoR;
+    openpedals::DelayLine<float> delayLineL, delayLineR;
+    openpedals::LFO lfoL, lfoR;
 
     std::atomic<float>* rateParam  = nullptr;
     std::atomic<float>* depthParam = nullptr;

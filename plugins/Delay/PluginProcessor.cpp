@@ -1,7 +1,7 @@
 /*
- * Bosslike Delay — Digital delay with feedback and tone control
+ * OpenPedals Delay — Digital delay with feedback and tone control
  *
- * Part of the Bosslike guitar effects plugin collection.
+ * Part of the OpenPedals guitar effects plugin collection.
  * Copyright (C) 2026 Richard Troendheim
  *
  * This program is free software: you can redistribute it and/or modify
@@ -82,8 +82,8 @@ void DelayProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::MidiB
     // Map tone 0-1 to lowpass cutoff 1kHz-20kHz on feedback path
     const float toneCutoff = 1000.0f * std::pow (20.0f, tone);
 
-    feedbackFilterL.setParameters (bosslike::BiquadFilter::Type::LowPass, toneCutoff, 0.707, 0.0, currentSampleRate);
-    feedbackFilterR.setParameters (bosslike::BiquadFilter::Type::LowPass, toneCutoff, 0.707, 0.0, currentSampleRate);
+    feedbackFilterL.setParameters (openpedals::BiquadFilter::Type::LowPass, toneCutoff, 0.707, 0.0, currentSampleRate);
+    feedbackFilterR.setParameters (openpedals::BiquadFilter::Type::LowPass, toneCutoff, 0.707, 0.0, currentSampleRate);
 
     const float delaySamples = static_cast<float> (delayMs * currentSampleRate / 1000.0);
     delayLineL.setDelay (delaySamples);

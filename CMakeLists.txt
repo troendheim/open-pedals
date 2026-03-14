@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.22)
 
-project(BosslikeVSTS VERSION 1.0.0 LANGUAGES C CXX)
+project(OpenPedals VERSION 1.0.0 LANGUAGES C CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -13,18 +13,18 @@ set(CMAKE_OSX_DEPLOYMENT_TARGET "11.0")
 add_subdirectory(JUCE)
 
 # Shared DSP library (header-only)
-add_library(BosslikeDSP INTERFACE)
-target_include_directories(BosslikeDSP INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/common)
+add_library(OpenPedalsDSP INTERFACE)
+target_include_directories(OpenPedalsDSP INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/common)
 
 # Helper function to create a plugin with standard settings
-function(bosslike_add_plugin)
+function(openpedals_add_plugin)
     set(oneValueArgs TARGET PLUGIN_NAME PLUGIN_CODE DESCRIPTION)
     set(multiValueArgs SOURCES)
     cmake_parse_arguments(PLUGIN "" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
 
     juce_add_plugin(${PLUGIN_TARGET}
-        COMPANY_NAME "Bosslike"
-        PLUGIN_MANUFACTURER_CODE BsLk
+        COMPANY_NAME "OpenPedals"
+        PLUGIN_MANUFACTURER_CODE OpPd
         PLUGIN_CODE ${PLUGIN_PLUGIN_CODE}
         FORMATS AU
         PRODUCT_NAME "${PLUGIN_PLUGIN_NAME}"
@@ -46,7 +46,7 @@ function(bosslike_add_plugin)
 
     target_link_libraries(${PLUGIN_TARGET}
         PRIVATE
-            BosslikeDSP
+            OpenPedalsDSP
             juce::juce_audio_utils
             juce::juce_dsp
         PUBLIC

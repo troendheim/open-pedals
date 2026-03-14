@@ -1,7 +1,7 @@
 /*
  * Oversampling.h — Anti-aliasing wrapper around JUCE's oversampling
  *
- * Part of the Bosslike guitar effects plugin collection.
+ * Part of the OpenPedals guitar effects plugin collection.
  * Copyright (C) 2026 Richard Troendheim
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,7 +16,7 @@
 #include <memory>
 #include <functional>
 
-namespace bosslike {
+namespace openpedals {
 
 class Oversampling
 {
@@ -74,4 +74,4 @@ private:
     int oversamplingFactor;
 };
 
-} // namespace bosslike
+} // namespace openpedals
