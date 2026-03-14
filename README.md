@@ -32,8 +32,8 @@ All plugins pass Apple's `auval` validation suite and are built as Universal Bin
 ### Clone
 
 ```bash
-git clone --recurse-submodules https://github.com/your-username/openpedals.git
-cd openpedals
+git clone --recurse-submodules https://github.com/troendheim/open-pedals.git
+cd open-pedals
 ```
 
 If you already cloned without `--recurse-submodules`:
