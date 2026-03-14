@@ -65,6 +65,7 @@ void ChorusProcessor::prepareToPlay (double sampleRate, int /*samplesPerBlock*/)
     lfoR.setWaveform (openpedals::LFO::Waveform::Sine);
     lfoL.reset();
     lfoR.reset();
+    lfoR.setPhase (0.25); // 90° offset for stereo width
 }
 
 void ChorusProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::MidiBuffer&)

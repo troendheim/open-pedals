@@ -52,6 +52,7 @@ private:
     // DSP
     juce::dsp::Reverb reverb;
     openpedals::DelayLine<float> preDelayL, preDelayR;
+    juce::AudioBuffer<float> preDelayBuffer; // Pre-allocated buffer for real-time safety
 
     std::atomic<float>* decayParam    = nullptr;
     std::atomic<float>* dampingParam  = nullptr;

@@ -80,7 +80,8 @@ void DelayProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::MidiB
     const float tone     = toneParam->load();
 
     // Map tone 0-1 to lowpass cutoff 1kHz-20kHz on feedback path
-    const float toneCutoff = 1000.0f * std::pow (20.0f, tone);
+    const float toneCutoff = std::min (1000.0f * std::pow (20.0f, tone),
+                                       static_cast<float> (currentSampleRate) * 0.45f);
 
     feedbackFilterL.setParameters (openpedals::BiquadFilter::Type::LowPass, toneCutoff, 0.707, 0.0, currentSampleRate);
     feedbackFilterR.setParameters (openpedals::BiquadFilter::Type::LowPass, toneCutoff, 0.707, 0.0, currentSampleRate);

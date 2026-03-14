@@ -71,6 +71,9 @@ void ReverbProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
     preDelayR.setMaxDelay (maxPreDelaySamples);
     preDelayL.reset();
     preDelayR.reset();
+
+    // Pre-allocate buffer for pre-delay processing (avoids heap allocation in processBlock)
+    preDelayBuffer.setSize (2, samplesPerBlock);
 }
 
 void ReverbProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::MidiBuffer&)
@@ -104,31 +107,31 @@ void ReverbProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::Midi
 
     if (preDelay > 0.0f)
     {
-        // Create a copy for the wet signal with pre-delay applied
-        juce::AudioBuffer<float> preDelayed (buffer.getNumChannels(), numSamples);
+        // Use pre-allocated buffer for the wet signal with pre-delay applied
+        preDelayBuffer.setSize (buffer.getNumChannels(), numSamples, false, false, true);
 
         for (int i = 0; i < numSamples; ++i)
         {
             if (buffer.getNumChannels() > 0)
             {
                 preDelayL.push (buffer.getSample (0, i));
-                preDelayed.setSample (0, i, preDelayL.get());
+                preDelayBuffer.setSample (0, i, preDelayL.get());
             }
             if (buffer.getNumChannels() > 1)
             {
                 preDelayR.push (buffer.getSample (1, i));
-                preDelayed.setSample (1, i, preDelayR.get());
+                preDelayBuffer.setSample (1, i, preDelayR.get());
             }
         }
 
         // Process the pre-delayed signal through reverb
-        juce::dsp::AudioBlock<float> block (preDelayed);
+        juce::dsp::AudioBlock<float> block (preDelayBuffer);
         juce::dsp::ProcessContextReplacing<float> context (block);
         reverb.process (context);
 
         // Copy back to output
         for (int ch = 0; ch < buffer.getNumChannels(); ++ch)
-            buffer.copyFrom (ch, 0, preDelayed, ch, 0, numSamples);
+            buffer.copyFrom (ch, 0, preDelayBuffer, ch, 0, numSamples);
     }
     else
     {

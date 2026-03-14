@@ -51,6 +51,11 @@ public:
         phase = 0.0;
     }
 
+    void setPhase (double newPhase)
+    {
+        phase = newPhase;
+    }
+
     // Returns value in range [-1, 1]
     float tick()
     {

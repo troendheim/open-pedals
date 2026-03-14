@@ -47,8 +47,12 @@ void OverdriveProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
     currentSampleRate = sampleRate;
 
     oversampling.initProcessing (static_cast<size_t> (samplesPerBlock));
+    oversampling.reset(); // Clear stale filter state to avoid clicks
     toneFilterL.reset();
     toneFilterR.reset();
+
+    // Report oversampling latency to the host for PDC (plugin delay compensation)
+    setLatencySamples (static_cast<int> (oversampling.getLatencyInSamples()));
 }
 
 void OverdriveProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::MidiBuffer&)
