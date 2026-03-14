@@ -3,6 +3,8 @@
 A growing collection of guitar effect pedal plugins for macOS, built as Audio Units for use in GarageBand, Logic Pro, and any other AU-compatible host.
 Every plugin is free and open source. No subscriptions, no telemetry.
 
+The code has been written mostly with help from OpenCode and Claude Opus 4.6. Let's see how far we can get!
+
 ## Available Effects
 
 | Plugin | Parameters | Description |
