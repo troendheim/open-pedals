@@ -1,0 +1,16 @@
+# Build
+build/
+cmake-build-*/
+
+# IDE
+.idea/
+*.xcodeproj/
+*.xcworkspace/
+.vscode/
+
+# macOS
+.DS_Store
+*.dSYM/
+
+# JUCE build artifacts
+*_artefacts/
