@@ -1,12 +1,7 @@
 # OpenPedals
 
 A growing collection of guitar effect pedal plugins for macOS, built as Audio Units for use in GarageBand, Logic Pro, and any other AU-compatible host.
-
-## Motivation
-
-Stock DAW effects are designed for mixing, not for guitarists. They lack the character, responsiveness, and familiar parameter layouts that pedalboard players expect. OpenPedals aims to fill that gap with a comprehensive set of stompbox-style effects -- each focused on doing one thing well, with a minimal parameter set that makes sense to guitar players, not mixing engineers.
-
-Every plugin is free and open source. No subscriptions, no dongles, no telemetry.
+Every plugin is free and open source. No subscriptions, no telemetry.
 
 ## Available Effects
 
@@ -176,8 +171,6 @@ The project currently builds AU (Audio Unit v2) plugins for macOS. Planned forma
 - [ ] **CLAP** -- open plugin standard gaining traction in Bitwig, Reaper, and others
 - [ ] **Standalone** -- self-contained apps with built-in audio I/O for practice and live use
 - [ ] **LV2** -- Linux plugin format for Ardour, Carla, and other Linux DAWs
-
-JUCE supports all of these formats from a single codebase, so expanding is largely a matter of adding format flags to the CMake configuration and testing on each platform.
 
 ## Technical Details
 
