@@ -81,6 +81,8 @@ All five plugin codes for validation:
 3. Select a track, open the Smart Controls or plugin chain
 4. Under **Audio Units > OpenPedals**, you will find all installed effects
 
+> **Note:** GarageBand will show a warning about "lowering security settings" the first time you load an OpenPedals plugin. This is because the plugins are not signed with an Apple Developer certificate -- it has nothing to do with the safety of the code. Click "Lower Security" to proceed. GarageBand shows this for all third-party plugins built from source. It only needs to be accepted once per plugin.
+
 ## Project Structure
 
 ```
